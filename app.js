@@ -1,13 +1,14 @@
 require("dotenv").config();
 require("./config/database").connect();
 const User = require("./model/user");
+const cors = require("cors");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("./middleware/auth");
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 app.post("/register", async (req, res) => {
   try {
     const { firstName, secondName, email, password } = req.body;
