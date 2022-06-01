@@ -5,10 +5,14 @@ const cors = require("cors");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const auth = require("./middleware/auth");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("uploads"));
+app.use("/data", require("./router/routes"));
 app.post("/register", async (req, res) => {
   try {
     const { firstName, secondName, email, password } = req.body;
@@ -65,10 +69,6 @@ app.post("/login", async (req, res) => {
     console.log("+++++", error);
     res.status(500).json({ message: "Something went wrong" });
   }
-});
-
-app.post("/", auth, async (req, res) => {
-  res.send("Welcome to Home Page");
 });
 
 module.exports = app;
