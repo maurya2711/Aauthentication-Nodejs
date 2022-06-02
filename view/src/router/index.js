@@ -3,7 +3,8 @@ import Login from "../views/Login.vue";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import SingleAnimeList from "../views/SingleAnimeList.vue";
-import Setting from "../views/Setting.vue";
+import Creator from "../views/Creator.vue";
+import Write from "../views/Write.vue";
 
 let token = localStorage.getItem("token");
 const routes = [
@@ -37,9 +38,14 @@ const routes = [
     component: SingleAnimeList,
   },
   {
-    path: "/setting",
-    name: "Setting",
-    component: Setting,
+    path: "/creator",
+    name: "Creator",
+    component: Creator,
+  },
+  {
+    path: "/write/:title",
+    name: "Write",
+    component: Write,
   },
 ];
 

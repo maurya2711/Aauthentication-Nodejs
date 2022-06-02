@@ -59,7 +59,7 @@ app.post("/login", async (req, res) => {
     const user = await User.findOne({ email: email.toLowerCase() });
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = jwt.sign({ id: user._id, email }, process.env.JWT_SECRET, {
-        expiresIn: "2h",
+        expiresIn: "9h",
       });
       user.token = token;
       res.status(200).json({ message: "User logged in successfully", user });

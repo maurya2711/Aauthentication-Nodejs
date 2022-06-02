@@ -25,7 +25,7 @@
             <router-link class="nav-link" to="/about">About Us</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/setting">Setting</router-link>
+            <router-link class="nav-link" to="/creator">Creator</router-link>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

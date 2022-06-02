@@ -71,9 +71,10 @@ export default {
       };
       console.log("Submitted!", credentails);
       await this.$store.dispatch("setToken", credentails);
+      console.log("Success!", this.success);
       if (this.success) {
         // alert("Login Successful!");
-        this.$router.push("/");
+        window.location.href = "/";
       } else {
         alert("Invalid Credentials");
       }

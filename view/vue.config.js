@@ -1,3 +1,3 @@
-export const devServer = {
-  proxy: "http://localhost:8080/",
-};
+// export const devServer = {
+//   proxy: "http://localhost:8080/",
+// };

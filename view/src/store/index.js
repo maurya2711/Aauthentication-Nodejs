@@ -10,10 +10,11 @@ export default createStore({
   state: {
     token: null,
     userDetails: null,
-    success: null,
+    success: false,
     errorMessage: null,
     animeList: null,
     singleAnime: null,
+    addAnime: null,
   },
   mutations: {
     setSuccess(state, payload) {
@@ -33,6 +34,9 @@ export default createStore({
     },
     setSingleAnime(state, payload) {
       state.singleAnime = payload;
+    },
+    setAddAnime(state, payload) {
+      state.addAnime = payload;
     },
   },
   actions: {
@@ -59,7 +63,7 @@ export default createStore({
           details
         );
         commit("setUserDetails", data.user);
-        commit("setSuccess", data.message);
+        commit("setSuccess", true);
       } catch (error) {
         console.log("error", error);
         commit("setErrorMessage", error);
@@ -70,7 +74,7 @@ export default createStore({
       try {
         const { data } = await axios.get("http://localhost:8080/data/", config);
         commit("setAnimeList", data);
-        commit("setSuccess", data.message);
+        commit("setSuccess", true);
       } catch (error) {
         console.log("error", error);
         commit("setErrorMessage", error);
@@ -85,9 +89,25 @@ export default createStore({
         );
         console.log("data of Single Anime", data);
         commit("setSingleAnime", data);
-        commit("setSuccess", data.message);
+        commit("setSuccess", true);
       } catch (error) {
         console.log("error of single Anime", error);
+        commit("setErrorMessage", error);
+      }
+    },
+
+    async setAddAnime({ commit }, details) {
+      console.log("++++++++++", details);
+      try {
+        const { data } = await axios.post(
+          "http://localhost:8080/data/",
+          details,
+          config
+        );
+        commit("setAddAnime", data);
+        commit("setSuccess", true);
+      } catch (error) {
+        console.log("error", error);
         commit("setErrorMessage", error);
       }
     },
