@@ -24,8 +24,14 @@ module.exports = class Api {
   static async createData(req, res) {
     const data = req.body;
     const image = req.file;
+
     data.image = image;
     try {
+      if (image) {
+        console.log("HIIIIIIIIIIIIIIIIIII", image);
+        let path = image.path;
+        res.send(image, path);
+      }
       await dataSchema.create(data);
       res.status(200).json({ message: "Data created successfully" });
     } catch (err) {

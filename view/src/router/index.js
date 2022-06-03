@@ -5,6 +5,8 @@ import About from "../views/About.vue";
 import SingleAnimeList from "../views/SingleAnimeList.vue";
 import Creator from "../views/Creator.vue";
 import Write from "../views/Write.vue";
+import Manga from "../views/Manga.vue";
+import Novels from "../views/Novels.vue";
 
 let token = localStorage.getItem("token");
 const routes = [
@@ -46,6 +48,16 @@ const routes = [
     path: "/write/:title",
     name: "Write",
     component: Write,
+  },
+  {
+    path: "/manga",
+    name: "Manga",
+    component: Manga,
+  },
+  {
+    path: "/novels",
+    name: "Novels",
+    component: Novels,
   },
 ];
 

@@ -9,7 +9,7 @@
           v-if="animeList"
           @click="handleClick(item._id)"
         >
-          <div class="card" style="width: 18rem">
+          <div class="card" style="width: 18rem; height: 50rem">
             <img
               src="https://img-9gag-fun.9cache.com/photo/aDgreo9_460s.jpg"
               class="card-img-top"

@@ -22,6 +22,12 @@
             >
           </li>
           <li class="nav-item">
+            <router-link class="nav-link" to="/manga">Manga</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/novels">Novels</router-link>
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link" to="/about">About Us</router-link>
           </li>
           <li class="nav-item">

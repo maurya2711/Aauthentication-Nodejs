@@ -9,15 +9,25 @@ let storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   fileName: function (req, file, cb) {
-    cb(
-      null,
-      file.feildName + "_" + Date.now() + "_" + file.originalname + ".jpg"
-    );
+    cb(null, Date.now() + "_" + file.originalname);
   },
 });
 
+let fileFilter = (req, file, cb) => {
+  if (
+    file.mimeType === "image/jpeg" ||
+    file.mimeType === "image/jpg" ||
+    file.mimeType === "image/png"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
 let uploads = multer({
   storage: storage,
+  fileFilter: fileFilter,
 }).single("image");
 
 router.get("/", auth, Api.getAllData);
