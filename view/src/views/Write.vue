@@ -15,7 +15,11 @@
       style="'width':500px "
     >
       <h5 class="text-center">Thank you for Response</h5>
-      <form class="card mx-3 my-3" @submit.prevent="handleAdd">
+      <form
+        class="card mx-3 my-3"
+        enctype="multipart/form-data"
+        @submit.prevent="handleAdd"
+      >
         <div class="form-group mx-3">
           <label for="title">Title</label>
           <input
@@ -58,17 +62,6 @@
           </select>
         </div>
 
-        <!-- <div class="form-group mx-3">
-          <label for="description">Description</label>
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            readonly
-            v-model="selected"
-          >
-          </textarea>
-        </div> -->
         <div class="form-group mx-3">
           <label for="description">Description</label>
           <textarea

@@ -38,6 +38,30 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
             Search
           </button>
+          <!-- Example single danger button -->
+          <div class="btn-group ml-1 mr-5">
+            <!-- <button
+              type="button"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            > -->
+            <img
+              src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-outline-user-icon-png-image_5045523.jpg"
+              style="width: 35px; height: 35px"
+              class="dropdown-toggle mr-3 ml-3 rounded-circle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            />
+            <!-- </button> -->
+            <div class="dropdown-menu mr-5">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">Setting</a>
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item" @click="handleLogout">Login Out</li>
+            </div>
+          </div>
         </form>
       </div>
     </nav>
@@ -47,6 +71,12 @@
 <script>
 export default {
   name: "NavBar",
+  methods: {
+    handleLogout() {
+      localStorage.removeItem("token");
+      location.reload();
+    },
+  },
 };
 </script>
 

@@ -23,7 +23,7 @@ module.exports = class Api {
   }
   static async createData(req, res) {
     const data = req.body;
-    const image = req.file.filename;
+    const image = req.file;
     data.image = image;
     try {
       await dataSchema.create(data);

@@ -62,7 +62,9 @@ app.post("/login", async (req, res) => {
         expiresIn: "9h",
       });
       user.token = token;
-      res.status(200).json({ message: "User logged in successfully", user });
+      return res
+        .status(200)
+        .json({ message: "User logged in successfully", user });
     }
     res.status(401).json({ message: "Invalid credentials" });
   } catch (error) {
