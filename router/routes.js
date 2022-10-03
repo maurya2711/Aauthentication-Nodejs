@@ -9,7 +9,7 @@ let storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   fileName: function (req, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname);
+    cb(null, file.fieldname + "-" + Date.now());
   },
 });
 
@@ -28,11 +28,11 @@ let fileFilter = (req, file, cb) => {
 let uploads = multer({
   storage: storage,
   fileFilter: fileFilter,
-}).single("image");
+});
 
 router.get("/", auth, Api.getAllData);
 router.get("/:id", auth, Api.getDataById);
-router.post("/", auth, uploads, Api.createData);
+router.post("/", auth, uploads.single("image"), Api.createData);
 router.put("/:id", auth, Api.updateDataById);
 router.delete("/:id", auth, Api.deleteDataById);
 

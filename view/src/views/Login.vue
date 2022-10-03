@@ -50,7 +50,7 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "Home",
+  name: "Home components",
   computed: {
     ...mapState(["errorMessage", "success"]),
   },
@@ -70,11 +70,16 @@ export default {
         password: this.password,
       };
       console.log("Submitted!", credentails);
+
       await this.$store.dispatch("setToken", credentails);
       console.log("Success!", this.success);
       if (this.success) {
+        alert("Login Successful");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1000);
         // alert("Login Successful!");
-        window.location.href = "/";
+        // window.location.href = "/";
       } else {
         alert("Invalid Credentials");
       }

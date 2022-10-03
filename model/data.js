@@ -8,7 +8,8 @@ const dataSchema = new mongooose.Schema({
   },
   genre: [{ type: String }],
   image: {
-    type: String,
+    data: Buffer,
+    contentType: String,
   },
   description: {
     type: String,

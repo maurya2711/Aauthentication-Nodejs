@@ -77,6 +77,7 @@
             type="file"
             class="form-control-file"
             id="exampleFormControlFile1"
+            name="image"
           />
         </div>
         <button

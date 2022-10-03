@@ -1,10 +1,12 @@
 const dataSchema = require("../model/data");
 const fs = require("fs");
-
+const DatauriParser = require("datauri/parser");
+const parser = new DatauriParser();
 module.exports = class Api {
   static async getAllData(req, res) {
     try {
       const data = await dataSchema.find();
+      // console.log("_____________________________________", data);
       res.status(200).json(data);
     } catch (err) {
       console.log("Get All Data Catch Block", err);
@@ -23,16 +25,27 @@ module.exports = class Api {
   }
   static async createData(req, res) {
     const data = req.body;
-    const image = req.file;
+    // const image = req.file;
+    console.log("<<<<<<<<<<<<<<<<<<<", req.body);
+    console.log("<<<<<<<<<<<<<<<<<<<", req.file);
+    let img = fs.readFileSync(req.file.path);
+    console.log("<<<<<<<<<<<<<<<<<<<", img);
+    // let encode_img = img.toString("base64");
+    // let final_img = {
+    //   contentType: req.file.mimetype,
+    //   image: new Buffer(encode_img, "base64"),
+    // };
 
-    data.image = image;
+    // data.image = image;
     try {
-      if (image) {
-        console.log("HIIIIIIIIIIIIIIIIIII", image);
-        let path = image.path;
-        res.send(image, path);
-      }
-      await dataSchema.create(data);
+      // if (image) {
+      //   console.log("HIIIIIIIIIIIIIIIIIII", image);
+      //   let path = image.path;
+      //   res.send(image, path);
+      // }
+      await dataSchema.create(img, data);
+      // res.contentType(final_img.contentType);
+      // res.send(final_img.image);
       res.status(200).json({ message: "Data created successfully" });
     } catch (err) {
       console.log("error in data api", err);

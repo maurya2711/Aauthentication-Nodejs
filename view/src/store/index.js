@@ -15,6 +15,7 @@ export default createStore({
     animeList: null,
     singleAnime: null,
     addAnime: null,
+    updateAnime: null,
   },
   mutations: {
     setSuccess(state, payload) {
@@ -37,6 +38,9 @@ export default createStore({
     },
     setAddAnime(state, payload) {
       state.addAnime = payload;
+    },
+    setUpdateAnime(state, payload) {
+      state.updateAnime = payload;
     },
   },
   actions: {
@@ -108,6 +112,22 @@ export default createStore({
         commit("setSuccess", true);
       } catch (error) {
         console.log("error", error);
+        commit("setErrorMessage", error);
+      }
+    },
+    async updateAnime({ commit }, details) {
+      console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", details);
+      try {
+        const { data } = await axios.put(
+          `http://localhost:8080/data/${details.id}`,
+          details,
+          config
+        );
+        console.log("UPDATE ANIME", data);
+        commit("setUpdateAnime", data);
+        commit("setSuccess", true);
+      } catch (error) {
+        console.log("error in Update anime API", error);
         commit("setErrorMessage", error);
       }
     },
